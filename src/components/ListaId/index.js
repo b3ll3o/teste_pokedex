@@ -19,6 +19,7 @@ const ListaId = () => {
 
     const getPokemonId = async () => {
       const { data } = await axios.get(`http://pokeapi.co/api/v2/pokemon/${id}`);
+      console.log(data);
       setPokemon(data);
     }
 
