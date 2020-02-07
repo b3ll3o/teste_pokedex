@@ -13,6 +13,7 @@ const ListaId = () => {
   
   const [ id, setId ] = useState('');
   const [ pokemon, setPokemon ] = useState('');
+  const [ submited, setSubmited ] = useState(false);
 
   useEffect(() => {
 
@@ -22,7 +23,7 @@ const ListaId = () => {
     }
 
     getPokemonId();
-  }, [ id ]);
+  }, [ submited, id ]);
 
   return (
  
@@ -35,6 +36,7 @@ const ListaId = () => {
         
         <form onSubmit={e => {
           e.preventDefault();
+          setSubmited(!submited);
         }}>
           <input placeholder='Codigo do pokemon' 
             onChange={e => setId(e.target.value)} />
