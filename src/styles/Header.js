@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export default styled.div`
 
@@ -7,6 +8,10 @@ export default styled.div`
   height: 7%;
 
   background-color: white;
+
+  ${media.greaterThan('medium')`
+    height: 10%;
+  `}
 
   .icon{
     display: flex;
@@ -19,6 +24,11 @@ export default styled.div`
       display:flex;
       width: 2rem;
       height: 2rem;
+
+      ${media.greaterThan('medium')`
+        width: 4rem;
+        height: 4rem;
+      `}
     }
   }
 
@@ -28,6 +38,10 @@ export default styled.div`
       justify-content: center;
       align-items: center;
       font-size: 2rem;
+
+      ${media.greaterThan('medium')`
+        font-size: 3.5rem;
+      `}
     }
   }
 
@@ -61,6 +75,10 @@ export default styled.div`
         margin-bottom: 1rem;
         padding: .75rem;
         text-decoration: none;
+
+        ${media.greaterThan('medium')`
+          font-size: 3.5rem;
+        `}
       }
     }
 

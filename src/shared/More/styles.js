@@ -1,10 +1,10 @@
 import styled from 'styled-components';
+import media from 'styled-media-query';
 
 export const Container = styled.div`
   
   display: flex;
   width: 100%;
-  height: 100%;
   flex-direction: column;
 
   .pokemon{
@@ -37,6 +37,12 @@ export const Container = styled.div`
       font-size: 1.25rem;
       border-bottom: 1px solid rgba(0, 0, 0, .2);
       padding: .5rem;
+      text-indent: .5rem;
+
+      ${media.greaterThan('medium')`
+        font-size: 2.5rem;
+        padding: 1rem;
+      `}
     }
   }
   
