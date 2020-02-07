@@ -47,6 +47,13 @@ export const Container = styled.div`
       margin-left: 2.5%;
       margin-right: 2.5%;
     `}
+
+    ${media.greaterThan('large')`
+      width: 27.5%;
+      height: 5rem;
+      margin-left: 2.5%;
+      margin-right: 2.5%;
+    `}
   }
 
   .carregaMais{

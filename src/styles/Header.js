@@ -13,12 +13,31 @@ export default styled.div`
     height: 10%;
   `}
 
+  .btnVoltar{
+    display: none;
+
+    ${media.greaterThan('large')`
+      display: flex;
+      width: 25%;
+      border: none;
+      color: black;
+      background-color: white;
+      font-size: 1.5rem;
+      justify-content: space-around;
+      align-items: center;
+    `}
+  }
+
   .icon{
     display: flex;
     height: 100%;
     width: 15%;
     justify-content: center;
     align-items: center;
+
+    ${media.greaterThan('large')`
+      display: none;
+    `}
 
     svg{
       display:flex;
@@ -42,7 +61,30 @@ export default styled.div`
       ${media.greaterThan('medium')`
         font-size: 3.5rem;
       `}
+
+      ${media.greaterThan('large')`
+        font-size: 3rem;
+        width: 50%;
+      `}
     }
+
+  .nav{
+    display: none;
+
+    ${media.greaterThan('large')`
+      display:flex;
+      width: 50%;
+      height: 100%;
+      justify-content: space-around;
+
+      a{
+        display: flex;
+        text-decoration: none;
+        color: black;
+        font-size: 1.5rem;
+        align-items: center;
+      }
+    `}
   }
 
   .menuGaveta{
@@ -88,5 +130,6 @@ export default styled.div`
       height: 100%;
       background-color: rgba(0, 0, 0, .5);
     }
+  }
   
 `;

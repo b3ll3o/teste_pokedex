@@ -18,6 +18,12 @@ const Menu = ({ palavra, action, links }) => {
         }} />
       </div>
       <span>{palavra}</span>
+      <div className='nav'>
+        {links && links.map(link => 
+          <Link to={link.path}>
+            {link.palavra}
+          </Link>)}
+      </div>
 
     { menu && 
       <div className='menuGaveta'>
