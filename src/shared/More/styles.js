@@ -41,6 +41,7 @@ export const Container = styled.div`
       background-color: white;
       border-radius: .5rem;
       flex-direction: column;
+      margin-bottom: 1rem;
 
       ${media.greaterThan('large')`
         margin-top: 1rem;
