@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+
+import { useDispatch, useSelector } from 'react-redux';
+import * as PokemonsActions from '../../actions/pokemonsActions';
+import * as PokemonActions from '../../actions/pokemonActions';
 
 import { Container } from './styles';
 
@@ -10,42 +13,20 @@ import More from '../../shared/More';
 
 const Listagem = () => { 
 
-  const [ pokemons, setPokemons ] = useState([]);
-  const [ pokemon, setPokemon ] = useState({});
+  const pokemon = useSelector(state => state.pokemon);
+  const pokemons = useSelector(state => state.pokemons);
+  const dispatch = useDispatch();
 
-  const [ url, setUrl ] = useState('');
   const [ more, setMore ] = useState('');
-  const [ proximo, setProximo ] = useState('');
-
-  useEffect(() => {
-    
-    const getData = async () => {
-      const { data } = await axios.get('https://pokeapi.co/api/v2/pokemon/');
-      const { results, next } = data;
-      setProximo(next);
-      setPokemons(results);
-    }
-
-    getData();
-  }, []);
 
   useEffect(() => {
 
-    const getPokemon = async () => {
-      const { data } = await axios.get(url);
-      setPokemon(data);
+    const fetch = () => {
+      dispatch(PokemonsActions.getPokemons());
     }
 
-    getPokemon();
-  }, [url]);
-
-
-  const getMorePokemons = async () => {
-    const { data } = await axios.get(proximo);
-    const { results, next } = data;
-    setProximo(next);
-    setPokemons(results);
-  }
+    fetch();
+  }, [dispatch]);
 
   const Lista = () => (
     <>
@@ -55,11 +36,10 @@ const Listagem = () => {
           { palavra: 'Habilidade', path: '/habilidade' }
         ]}
       />
-
-      {pokemons && pokemons.map(p => 
-        <div className='lista' key={p.url} onClick={e => {
+      {pokemons.data && pokemons.data.map(p => 
+        <div className='lista' key={p.url} onClick={e => {    
           e.preventDefault();
-          setUrl(p.url);
+          dispatch(PokemonActions.getPokemonUrl(p.url))
           setMore(!more);
         }} >
           <span>{p.name}</span>
@@ -67,7 +47,7 @@ const Listagem = () => {
 
       <button  className='carregaMais' onClick={e => {
         e.preventDefault();
-        getMorePokemons();
+        dispatch(PokemonsActions.getMorePokemons(pokemons.next))
       }}>Carregar outros Pokemons</button>
     </>
   );

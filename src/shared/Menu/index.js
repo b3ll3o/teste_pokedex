@@ -20,7 +20,7 @@ const Menu = ({ palavra, action, links }) => {
       <span>{palavra}</span>
       <div className='nav'>
         {links && links.map(link => 
-          <Link to={link.path}>
+          <Link key={link.path} to={link.path}>
             {link.palavra}
           </Link>)}
       </div>
@@ -29,7 +29,7 @@ const Menu = ({ palavra, action, links }) => {
       <div className='menuGaveta'>
         <div className='menu'>
           {links && links.map(link => 
-            <Link to={link.path}>
+            <Link key={link.path} to={link.path}>
               {link.palavra}
             </Link>)}
         </div>

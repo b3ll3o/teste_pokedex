@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import * as PokemonActions from '../../actions/pokemonActions';
 
 import { ReactComponent as PesquisaIcon } from '../../asserts/svg/pesquisa.svg';
 
@@ -7,24 +10,12 @@ import { Container } from './styles';
 import Menu from '../../shared/Menu';
 import More from '../../shared/More';
 
-import axios from 'axios';
-
 const ListaId = () => {
   
+  const dispatch = useDispatch();
+  const pokemon = useSelector(state => state.pokemon);
+
   const [ id, setId ] = useState('');
-  const [ pokemon, setPokemon ] = useState('');
-  const [ submited, setSubmited ] = useState(false);
-
-  useEffect(() => {
-
-    const getPokemonId = async () => {
-      const { data } = await axios.get(`http://pokeapi.co/api/v2/pokemon/${id}`);
-      console.log(data);
-      setPokemon(data);
-    }
-
-    getPokemonId();
-  }, [ submited, id ]);
 
   return (
  
@@ -37,7 +28,7 @@ const ListaId = () => {
         
         <form onSubmit={e => {
           e.preventDefault();
-          setSubmited(!submited);
+          dispatch(PokemonActions.getPokemonId(id));
         }}>
           <input placeholder='Codigo do pokemon' 
             onChange={e => setId(e.target.value)} />
