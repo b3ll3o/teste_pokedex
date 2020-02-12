@@ -24,5 +24,6 @@ export const getMorePokemons = async proximo => {
 
 export const getPokemonHabilidade = async ability => {
   const { data } = await axios.get(`http://pokeapi.co/api/v2/ability/${ability}`);
-  return data.pokemon;
+  const pokemons = data.pokemon.map(d => d.pokemon);
+  return pokemons;
 }

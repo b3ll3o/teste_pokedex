@@ -38,15 +38,16 @@ const Habilidade = () => {
             onChange={e => setHabilidade(e.target.value)} />
           <button type='submit'><PesquisaIcon /></button>
         </form>
-        { pokemons.data && pokemons.data.map(res => 
-        <div key={res.pokemon.url} className='lista' 
-          onClick={e => {
-            e.preventDefault();
-            dispatch(PokemonActions.getPokemonUrl(res.pokemon.url))
-            setMore(!more);
-          }}>
-          <span>{res.pokemon.name}</span>
-        </div>)}
+        { pokemons.data && pokemons.data.map(p => 
+          <div key={p.url} className='lista' 
+        
+            onClick={e => {
+              e.preventDefault();
+              dispatch(PokemonActions.getPokemonUrl(p.url));
+              setMore(!more);
+            }}>
+            <span>{p.name}</span>
+          </div>)}
     </>
   );
 
